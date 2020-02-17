@@ -1,8 +1,21 @@
 const express=require('express');
+const cors=require('cors')
 const app=express()
 
-app.set("PORT", process.env.port | 4000 )
+//Settings
+app.set("PORT", process.env.PORT || 4000 )
 
+
+//Middlewares
+app.use(cors())
+app.use(express.json())
+
+
+//Routes
+app.use('/api/users',require('./routes/user'))
+app.use('/api/notes',require('./routes/notes'))
+
+ 
 
 
 module.exports=app

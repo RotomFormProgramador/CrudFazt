@@ -9,6 +9,6 @@ mongoose.connect(process.env.URL,{
 const connection=mongoose.connection
 
 connection.once('open',()=>{
-    console.log('Databse is connected')
+    console.log('Database is connected')
 })
 
