@@ -1,12 +1,39 @@
 const notesCtrl={}
 
+const Note=require('../models/Note')
 
-notesCtrl.getNotes=(req,res)=>{res.json({message:[]})}
-notesCtrl.createNote=(req,res)=>{res.json({message:"Note Saved"})}
+notesCtrl.getNotes= async (req,res)=>{
+    const notes= await Note.find()
+    res.json(notes)
+}
+notesCtrl.createNote=async (req,res)=>{
+    const {title,content,author}=req.body
+    const newNote  =new Note({
+        title,
+        content,
+        author 
+    })
+    await newNote.save()
+    console.log(newNote)
+    res.json({message:"Note Saved"})
+}  
 
-notesCtrl.getNote=(req,res)=>{res.json({title:"Junior es guapo"})}
-notesCtrl.updateNote=(req,res)=>{res.json({message:"Note updated"})}
-notesCtrl.deleteNote=(req,res)=>{res.json({message:"Note deleted"})}
+notesCtrl.getNote=async (req,res)=>{
+    const note=await Note.findById(req.params.id)
+    res.json(note)
+}
+notesCtrl.updateNote=async (req,res)=>{
+    const {title,content,author}=req.body
+    await Note.findOneAndUpdate(req.params.id,{
+        title,
+        author,
+        content
+    })
+    res.json({message:"Note updated"})
+} 
+notesCtrl.deleteNote=async (req,res)=>{
+    await Note.findByIdAndDelete(req.params.id)
+    res.json({message:"Note deleted"})}
 
-
+ 
 module.exports =notesCtrl
