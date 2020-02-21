@@ -14,7 +14,6 @@ notesCtrl.createNote=async (req,res)=>{
         author 
     })
     await newNote.save()
-    console.log(newNote)
     res.json({message:"Note Saved"})
 }  
 

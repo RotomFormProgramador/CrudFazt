@@ -1,10 +1,18 @@
 const usersCtrl={}
+const User =require('../models/User')
 
-usersCtrl.getUsers=(req,res)=>{res.json({message:[]})}
-usersCtrl.createUser=(req,res)=>{
-    req.body
+usersCtrl.getUsers= async (req,res)=>{
+    const  users=await User.find()
+    res.json(users)}
+
+usersCtrl.createUser= async (req,res)=>{
+    const userName=req.body.userName
+    newUser= new User({userName})
+    await newUser.save()
     res.json({message:"User creacted"})}
 
-usersCtrl.deleteUser=(req,res)=>{res.json({title:"User delete"})}
+usersCtrl.deleteUser=async (req,res)=>{
+    await User.findByIdAndDelete(req.params.id)    
+    res.json({title:"User delete"})}
 
 module.exports =usersCtrl 
