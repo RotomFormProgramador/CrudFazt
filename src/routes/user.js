@@ -1,6 +1,6 @@
 const {Router} =require('express')
 
-const {getUsers,deleteUser,createUser}=require('../controlers/users.controllers')
+const {getUsers,deleteUser,createUser}=require('../controllers/users.controllers')
 
 const router =Router()
 

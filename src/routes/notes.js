@@ -1,5 +1,5 @@
 const {Router} =require('express')
-const {getNotes,createNote,updateNote,deleteNote,getNote}=require('../controlers/notes.controllers')
+const {getNotes,createNote,updateNote,deleteNote,getNote}=require('../controllers/notes.controllers')
 const router =Router()
 
 router.route('/')

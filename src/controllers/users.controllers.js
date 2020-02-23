@@ -6,6 +6,7 @@ usersCtrl.getUsers= async (req,res)=>{
     res.json(users)}
 
 usersCtrl.createUser= async (req,res)=>{
+    console.log('User created')
     const userName=req.body.userName
     newUser= new User({userName})
     await newUser.save()
