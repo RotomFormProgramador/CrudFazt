@@ -8,8 +8,8 @@ import NotesList from './components/NoteList';
 import CreateUser from './components/CreateUser';
 
 function App() {
+
   return (
-  
   <BrowserRouter className="App">
     <Navigation/>
       <div className="container p-4">
