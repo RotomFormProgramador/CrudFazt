@@ -7,11 +7,12 @@ notesCtrl.getNotes= async (req,res)=>{
     res.json(notes)
 }
 notesCtrl.createNote=async (req,res)=>{
-    const {title,content,author}=req.body
+    const {title,content,author,date}=req.body
     const newNote  =new Note({
         title,
         content,
-        author 
+        author,
+        date
     })
     await newNote.save()
     res.json({message:"Note Saved"})
@@ -22,11 +23,12 @@ notesCtrl.getNote=async (req,res)=>{
     res.json(note)
 }
 notesCtrl.updateNote=async (req,res)=>{
-    const {title,content,author}=req.body
+    const {title,content,author,date}=req.body
     await Note.findOneAndUpdate(req.params.id,{
         title,
         author,
-        content
+        content,
+        date
     })
     res.json({message:"Note updated"})
 } 
